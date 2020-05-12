@@ -30,3 +30,9 @@ steps:
     applicationId: 'jake-flask-sbom'
     stage: 'Build'
     scanTargets: 'jake-bom.xml'
+
+- script: wget https://download.sonatype.com/clm/scanner/latest.jar
+  displayName: download CLI
+
+- script: java -jar latest.jar -s https://m8bcp26vql-nxiq.sonatype-se.com/ -i jake-flask-sbom -t release -a admin:admin123 jake-bom.xml
+  displayName: run CLI scan
