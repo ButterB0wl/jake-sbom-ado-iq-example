@@ -1,4 +1,3 @@
-# Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -10,8 +9,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: pip3 install flask --index https://pypi.org/simple
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.8'
+    addToPath: true
+    architecture: 'x64'
+
+- script: pip3 install flask --index-url https://pypi.org/simple
   displayName: 'install flask with pip3'
 
-- script: pip3 install jake --index https://pypi.org/simple
+- script: pip3 install jake --index-url https://pypi.org/simple
   displayName: 'install jake with pip3'
