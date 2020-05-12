@@ -20,3 +20,13 @@ steps:
 
 - script: pip3 install jake --index-url https://pypi.org/simple
   displayName: 'install jake with pip3'
+
+- script: jake sbom -o jake-bom.xml
+  displayName: 'generate sbom for python site packages using jake'
+
+- task: NexusIqPipelineTask@1
+  inputs:
+    nexusIqService: 'BMA IQ'
+    applicationId: 'jake-flask-sbom'
+    stage: 'Build'
+    scanTargets: 'jake-bom.xml'
