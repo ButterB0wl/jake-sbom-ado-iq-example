@@ -10,8 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: pip3 install flask
+- script: pip3 install flask --index https://pypi.org/simple
   displayName: 'install flask with pip3'
 
-- script: pip3 install jake
+- script: pip3 install jake --index https://pypi.org/simple
   displayName: 'install jake with pip3'
